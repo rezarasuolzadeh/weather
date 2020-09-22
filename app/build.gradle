@@ -34,6 +34,9 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
+    //Recycler view
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+
     //Retrofit
     implementation "com.squareup.retrofit2:retrofit:2.6.2" //don't update
     implementation "com.squareup.retrofit2:converter-gson:2.6.2" //don't update
