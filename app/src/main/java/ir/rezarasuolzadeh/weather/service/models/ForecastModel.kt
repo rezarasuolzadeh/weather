@@ -12,7 +12,7 @@ data class ForecastModel(
     @SerializedName("lat")
     val lat: Double = 0.0, // 36.27
     @SerializedName("lon")
-    val lon: Int = 0, // 50
+    val lon: Double = 0.0, // 50
     @SerializedName("timezone")
     val timezone: String = "", // Asia/Tehran
     @SerializedName("timezone_offset")
@@ -37,7 +37,7 @@ data class Current(
     @SerializedName("sunset")
     val sunset: Int = 0, // 1600871752
     @SerializedName("temp")
-    val temp: Int = 0, // 29
+    val temp: Double = 0.0, // 29
     @SerializedName("uvi")
     val uvi: Double = 0.0, // 7.31
     @SerializedName("visibility")

@@ -43,10 +43,23 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/offlineTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/vazir"
+                        android:gravity="center"
+                        android:padding="2dp"
+                        android:text="آفلاین"
+                        android:visibility="gone"
+                        android:textColor="@color/red"
+                        android:textSize="15sp"
+                        android:textStyle="normal" />
+
+                    <TextView
                         android:id="@+id/temperatureTextView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="25dp"
+                        android:layout_marginTop="20dp"
                         android:fontFamily="@font/vazir"
                         android:gravity="center"
                         android:text="17°c"

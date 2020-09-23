@@ -58,11 +58,13 @@ class WeatherActivity : AppCompatActivity(), Observer<Any?> {
         if (response is Enums.DataState) {
             if (response == Enums.DataState.FAILED) {
                 // offline
+                offlineTextView.visibility = View.VISIBLE
             }
         }
         if (response is Enums.NetworkState) {
             if (response == Enums.NetworkState.NO_INTERNET) {
                 // offline
+                offlineTextView.visibility = View.VISIBLE
             }
         }
     }
