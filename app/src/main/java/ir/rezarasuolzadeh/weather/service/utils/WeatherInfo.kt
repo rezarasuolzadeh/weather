@@ -1,5 +1,7 @@
 package ir.rezarasuolzadeh.weather.service.utils
 
+import ir.rezarasuolzadeh.weather.R
+
 class WeatherInfo {
 
     fun generateWindSpeed(speed: Double): String {
@@ -60,6 +62,24 @@ class WeatherInfo {
 
     fun generateVisibility(visibility: Int): String {
         return (visibility / 1000).toString().plus(" km\n").plus("دید افقی")
+    }
+
+    fun generateConditionIcon(icon: String): Int {
+        return when(icon) {
+            "01d" -> R.drawable.ic_01d
+            "02d" -> R.drawable.ic_02d
+            "03d", "03n" -> R.drawable.ic_03d
+            "04d", "04n" -> R.drawable.ic_04d
+            "09d", "09n" -> R.drawable.ic_09d
+            "10d" -> R.drawable.ic_10d
+            "11d", "11n" -> R.drawable.ic_11d
+            "13d", "13n" -> R.drawable.ic_13d
+            "50d", "50n" -> R.drawable.ic_50d
+            "01n" -> R.drawable.ic_01n
+            "02n" -> R.drawable.ic_02n
+            "10n" -> R.drawable.ic_10n
+            else -> R.drawable.ic_01d
+        }
     }
 
 }

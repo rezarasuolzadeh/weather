@@ -37,6 +37,7 @@ class WeatherActivity : AppCompatActivity(), Observer<Any?> {
             visibilityTextView.text = weatherInfo.generateVisibility(response.visibility)
             windSpeedTextView.text = weatherInfo.generateWindSpeed(response.wind.speed)
             windDegreeTextView.text = weatherInfo.generateWindDegree(response.wind.deg)
+            conditionImageView.setImageResource(weatherInfo.generateConditionIcon(response.weather[0].icon))
         }
         if (response is Enums.DataState) {
             if (response == Enums.DataState.FAILED) {

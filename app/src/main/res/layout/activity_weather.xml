@@ -85,8 +85,9 @@
                         android:id="@+id/conditionImageView"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
+                        android:padding="8dp"
                         android:layout_gravity="center"
-                        android:src="@mipmap/ic_weather" />
+                        android:src="@drawable/ic_02d" />
 
                     <TextView
                         android:id="@+id/conditionTextView"
