@@ -8,6 +8,7 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_weather"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:name=".service.config.MyApplication"
         android:roundIcon="@mipmap/ic_weather_round"
         android:supportsRtl="true"

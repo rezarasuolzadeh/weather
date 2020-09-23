@@ -7,10 +7,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import ir.rezarasuolzadeh.weather.R
 import ir.rezarasuolzadeh.weather.service.models.ForecastModel
+import ir.rezarasuolzadeh.weather.service.models.OfflineWeatherModel
 import ir.rezarasuolzadeh.weather.service.models.WeatherModel
 import ir.rezarasuolzadeh.weather.service.utils.Enums
 import ir.rezarasuolzadeh.weather.service.utils.WeatherInfo
 import ir.rezarasuolzadeh.weather.view.adapters.ForecastAdapter
+import ir.rezarasuolzadeh.weather.viewmodel.OfflineViewModel
 import ir.rezarasuolzadeh.weather.viewmodel.WeatherViewModel
 import kotlinx.android.synthetic.main.activity_weather.*
 import org.koin.android.ext.android.inject
@@ -19,6 +21,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class WeatherActivity : AppCompatActivity(), Observer<Any?> {
 
     private val weatherViewModel by viewModel<WeatherViewModel>()
+    private val offlineViewModel by viewModel<OfflineViewModel>()
     private val weatherInfo: WeatherInfo by inject()
     private val forecastAdapter: ForecastAdapter by inject()
 
@@ -48,6 +51,20 @@ class WeatherActivity : AppCompatActivity(), Observer<Any?> {
             windSpeedTextView.text = weatherInfo.generateWindSpeed(response.wind.speed)
             windDegreeTextView.text = weatherInfo.generateWindDegree(response.wind.deg)
             conditionImageView.setImageResource(weatherInfo.generateConditionIcon(response.weather[0].icon))
+            // update cache
+            val weather = OfflineWeatherModel(
+                1,
+                response.main.temp,
+                response.weather[0].description,
+                response.wind.speed,
+                response.wind.deg,
+                response.main.pressure,
+                response.main.humidity,
+                response.visibility,
+                response.weather[0].icon
+            )
+            offlineViewModel.deleteWeather()
+            offlineViewModel.insertWeather(weather)
         }
         if (response is ForecastModel) {
             forecastAdapter.dailyList = response.daily
@@ -57,16 +74,31 @@ class WeatherActivity : AppCompatActivity(), Observer<Any?> {
         }
         if (response is Enums.DataState) {
             if (response == Enums.DataState.FAILED) {
-                // offline
-                offlineTextView.visibility = View.VISIBLE
+                Toast.makeText(this, "ارتباط با خطا مواجه شد", Toast.LENGTH_SHORT).show()
             }
         }
         if (response is Enums.NetworkState) {
             if (response == Enums.NetworkState.NO_INTERNET) {
-                // offline
-                offlineTextView.visibility = View.VISIBLE
+                readCache()
             }
         }
+    }
+
+    private fun readCache() {
+        offlineViewModel.getWeather().observe(this, Observer {
+            if(it is OfflineWeatherModel) {
+                temperatureTextView.text = weatherInfo.generateTemperature(it.temperature)
+                conditionTextView.text = weatherInfo.generateCondition(it.condition)
+                pressureTextView.text = weatherInfo.generatePressure(it.pressure)
+                humidityTextView.text = weatherInfo.generateHumidity(it.humidity)
+                visibilityTextView.text = weatherInfo.generateVisibility(it.visibility)
+                windSpeedTextView.text = weatherInfo.generateWindSpeed(it.windSpeed)
+                windDegreeTextView.text = weatherInfo.generateWindDegree(it.windDegree)
+                conditionImageView.setImageResource(weatherInfo.generateConditionIcon(it.icon))
+                offlineTextView.visibility = View.VISIBLE
+                waitingLayout.visibility = View.GONE
+            }
+        })
     }
 
     override fun onBackPressed() {

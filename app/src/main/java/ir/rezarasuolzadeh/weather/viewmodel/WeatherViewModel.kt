@@ -3,7 +3,9 @@ package ir.rezarasuolzadeh.weather.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import ir.rezarasuolzadeh.weather.service.models.ForecastModel
+import ir.rezarasuolzadeh.weather.service.models.OfflineWeatherModel
 import ir.rezarasuolzadeh.weather.service.models.WeatherModel
+import ir.rezarasuolzadeh.weather.service.repositories.OfflineRepository
 import ir.rezarasuolzadeh.weather.service.repositories.WeatherRepository
 import ir.rezarasuolzadeh.weather.service.utils.Enums
 import kotlinx.coroutines.Dispatchers
