@@ -8,7 +8,7 @@ class WeatherRepository(private val weatherDao: WeatherDao) {
 
     private val language = "fa"
     private val unit = "Metric"
-    private val exclude = "daily"
+    private val exclude = "Metric"
 
     suspend fun getWeather(city: String, token: String): Any? {
         return try {

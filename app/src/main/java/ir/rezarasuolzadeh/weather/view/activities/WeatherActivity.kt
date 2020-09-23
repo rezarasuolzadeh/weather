@@ -9,6 +9,7 @@ import ir.rezarasuolzadeh.weather.service.models.ForecastModel
 import ir.rezarasuolzadeh.weather.service.models.WeatherModel
 import ir.rezarasuolzadeh.weather.service.utils.Enums
 import ir.rezarasuolzadeh.weather.service.utils.WeatherInfo
+import ir.rezarasuolzadeh.weather.view.adapters.ForecastAdapter
 import ir.rezarasuolzadeh.weather.viewmodel.WeatherViewModel
 import kotlinx.android.synthetic.main.activity_weather.*
 import org.koin.android.ext.android.inject
@@ -18,6 +19,7 @@ class WeatherActivity : AppCompatActivity(), Observer<Any?> {
 
     private val weatherViewModel by viewModel<WeatherViewModel>()
     private val weatherInfo: WeatherInfo by inject()
+    private val forecastAdapter: ForecastAdapter by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,7 +49,9 @@ class WeatherActivity : AppCompatActivity(), Observer<Any?> {
             conditionImageView.setImageResource(weatherInfo.generateConditionIcon(response.weather[0].icon))
         }
         if (response is ForecastModel) {
-            Toast.makeText(this, "اطلاعات پیش بینی دریافت شد", Toast.LENGTH_SHORT).show()
+            forecastAdapter.dailyList = response.daily
+            forecastAdapter.context = this
+            forecastRecyclerView.adapter = forecastAdapter
         }
         if (response is Enums.DataState) {
             if (response == Enums.DataState.FAILED) {

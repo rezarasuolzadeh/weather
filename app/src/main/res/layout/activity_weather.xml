@@ -1,258 +1,265 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.core.widget.NestedScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true"
-        android:overScrollMode="ifContentScrolls"
-        android:scrollbars="none">
+        android:layout_marginBottom="0.5dp">
 
-        <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/blue"
-            tools:context=".view.activities.WeatherActivity">
+            android:fillViewport="true"
+            android:overScrollMode="ifContentScrolls"
+            android:scrollbars="none">
 
-            <View
-                android:id="@+id/topDivider"
+            <androidx.constraintlayout.widget.ConstraintLayout xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:background="@color/white"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <View
-                android:id="@+id/bottomDivider"
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:background="@color/white"
-                app:layout_constraintBottom_toBottomOf="parent" />
-
-            <LinearLayout
-                android:id="@+id/topLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintTop_toBottomOf="@id/topDivider">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:fontFamily="@font/vazir"
-                    android:gravity="center"
-                    android:padding="10dp"
-                    android:text="هواشناسی قزوین"
-                    android:textColor="@color/black"
-                    android:textSize="25sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/lastUpdateTextView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/vazir"
-                    android:gravity="center"
-                    android:padding="2dp"
-                    android:text="15:00 - 1398/1/23"
-                    android:textColor="@color/black"
-                    android:textSize="13sp" />
-
-                <TextView
-                    android:id="@+id/temperatureTextView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="25dp"
-                    android:fontFamily="@font/vazir"
-                    android:gravity="center"
-                    android:text="17°c"
-                    android:textColor="@color/white"
-                    android:textSize="40sp"
-                    android:textStyle="bold" />
+                android:layout_height="match_parent"
+                android:background="@color/blue"
+                tools:context=".view.activities.WeatherActivity">
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:id="@+id/topLayout"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layoutDirection="rtl"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:id="@+id/conditionImageView"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:padding="8dp"
-                        android:layout_gravity="center"
-                        android:src="@drawable/ic_02d" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/conditionTextView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
                         android:fontFamily="@font/vazir"
                         android:gravity="center"
                         android:padding="10dp"
-                        android:text="نیمه ابری"
+                        android:text="هواشناسی قزوین"
+                        android:textColor="@color/black"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/lastUpdateTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/vazir"
+                        android:gravity="center"
+                        android:padding="2dp"
+                        android:text="15:00 - 1398/1/23"
+                        android:textColor="@color/black"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/temperatureTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="25dp"
+                        android:fontFamily="@font/vazir"
+                        android:gravity="center"
+                        android:text="17°c"
                         android:textColor="@color/white"
-                        android:textSize="25sp" />
+                        android:textSize="40sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layoutDirection="rtl"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/conditionImageView"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_gravity="center"
+                            android:padding="8dp"
+                            android:src="@drawable/ic_02d" />
+
+                        <TextView
+                            android:id="@+id/conditionTextView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/vazir"
+                            android:gravity="center"
+                            android:padding="10dp"
+                            android:text="نیمه ابری"
+                            android:textColor="@color/white"
+                            android:textSize="25sp" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/windSpeedTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/vazir"
+                        android:gravity="center"
+                        android:padding="2dp"
+                        android:text="5.1 متر بر ثانیه | 18.36 کیلومتر بر ساعت"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/windDegreeTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/vazir"
+                        android:gravity="center"
+                        android:padding="2dp"
+                        android:text="غربی (°290)"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:gravity="center"
+                        android:layoutDirection="rtl"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layoutDirection="rtl"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:layout_gravity="center"
+                                android:padding="5dp"
+                                android:src="@drawable/ic_barometer" />
+
+                            <TextView
+                                android:id="@+id/pressureTextView"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:fontFamily="@font/vazir"
+                                android:gravity="center"
+                                android:padding="5dp"
+                                android:text="فشارهوا"
+                                android:textColor="@color/white"
+                                android:textSize="15sp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layoutDirection="rtl"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:layout_gravity="center"
+                                android:padding="5dp"
+                                android:src="@drawable/ic_humidity" />
+
+                            <TextView
+                                android:id="@+id/humidityTextView"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:fontFamily="@font/vazir"
+                                android:gravity="center"
+                                android:padding="5dp"
+                                android:text="نم نسبی"
+                                android:textColor="@color/white"
+                                android:textSize="15sp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layoutDirection="rtl"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:layout_gravity="center"
+                                android:padding="5dp"
+                                android:src="@drawable/ic_visibility" />
+
+                            <TextView
+                                android:id="@+id/visibilityTextView"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:fontFamily="@font/vazir"
+                                android:gravity="center"
+                                android:padding="5dp"
+                                android:text="دید افقی"
+                                android:textColor="@color/white"
+                                android:textSize="15sp" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <View
+                        android:id="@+id/middleDivider"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_margin="10dp"
+                        android:background="@color/white"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/vazir"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:text="پیش بینی 5 روز آینده هوا"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 
-                <TextView
-                    android:id="@+id/windSpeedTextView"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/forecastRecyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/vazir"
-                    android:gravity="center"
-                    android:padding="2dp"
-                    android:text="5.1 متر بر ثانیه | 18.36 کیلومتر بر ساعت"
-                    android:textColor="@color/black"
-                    android:textSize="15sp" />
+                    android:overScrollMode="never"
+                    android:scrollbars="none"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintTop_toBottomOf="@id/topLayout" />
 
-                <TextView
-                    android:id="@+id/windDegreeTextView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/vazir"
-                    android:gravity="center"
-                    android:padding="2dp"
-                    android:text="غربی (°290)"
-                    android:textColor="@color/black"
-                    android:textSize="15sp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:gravity="center"
-                    android:layoutDirection="rtl"
-                    android:orientation="horizontal">
+        </androidx.core.widget.NestedScrollView>
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layoutDirection="rtl"
-                        android:orientation="horizontal">
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-                        <ImageView
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:layout_gravity="center"
-                            android:padding="5dp"
-                            android:src="@drawable/ic_barometer" />
+    <View
+        android:id="@+id/topDivider"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/white"
+        app:layout_constraintTop_toTopOf="parent" />
 
-                        <TextView
-                            android:id="@+id/pressureTextView"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:fontFamily="@font/vazir"
-                            android:gravity="center"
-                            android:padding="5dp"
-                            android:text="فشارهوا"
-                            android:textColor="@color/white"
-                            android:textSize="15sp" />
+    <View
+        android:id="@+id/bottomDivider"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layoutDirection="rtl"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:layout_gravity="center"
-                            android:padding="5dp"
-                            android:src="@drawable/ic_humidity" />
-
-                        <TextView
-                            android:id="@+id/humidityTextView"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:fontFamily="@font/vazir"
-                            android:gravity="center"
-                            android:padding="5dp"
-                            android:text="نم نسبی"
-                            android:textColor="@color/white"
-                            android:textSize="15sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layoutDirection="rtl"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:layout_gravity="center"
-                            android:padding="5dp"
-                            android:src="@drawable/ic_visibility" />
-
-                        <TextView
-                            android:id="@+id/visibilityTextView"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:fontFamily="@font/vazir"
-                            android:gravity="center"
-                            android:padding="5dp"
-                            android:text="دید افقی"
-                            android:textColor="@color/white"
-                            android:textSize="15sp" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <View
-                    android:id="@+id/middleDivider"
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5dp"
-                    android:layout_margin="10dp"
-                    android:background="@color/white"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/vazir"
-                    android:gravity="center"
-                    android:padding="10dp"
-                    android:text="پیش بینی 5 روز آینده هوا"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/forecastRecyclerVIew"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:overScrollMode="never"
-                android:scrollbars="none"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintTop_toBottomOf="@id/topLayout" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </androidx.core.widget.NestedScrollView>
-
-</LinearLayout>
+</FrameLayout>
