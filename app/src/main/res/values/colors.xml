@@ -7,4 +7,6 @@
     <color name="blue">#96D9DC</color>
     <color name="white">#FFF</color>
     <color name="black">#000</color>
+    <color name="low">#11FFFFFF</color>
+    <color name="ripple">#C7C7C7</color>
 </resources>

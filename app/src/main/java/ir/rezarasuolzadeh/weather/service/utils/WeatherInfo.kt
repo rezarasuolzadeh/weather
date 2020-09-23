@@ -65,7 +65,7 @@ class WeatherInfo {
     }
 
     fun generateConditionIcon(icon: String): Int {
-        return when(icon) {
+        return when (icon) {
             "01d" -> R.drawable.ic_01d
             "02d" -> R.drawable.ic_02d
             "03d", "03n" -> R.drawable.ic_03d
@@ -80,6 +80,10 @@ class WeatherInfo {
             "10n" -> R.drawable.ic_10n
             else -> R.drawable.ic_01d
         }
+    }
+
+    fun generateDays(day: Int): String {
+        return " ${day + 1} روز آینده"
     }
 
 }

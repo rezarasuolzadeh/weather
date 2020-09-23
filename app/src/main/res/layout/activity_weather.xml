@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -27,8 +27,8 @@
                     android:id="@+id/topLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    app:layout_constraintTop_toTopOf="parent">
 
                     <TextView
                         android:layout_width="match_parent"
@@ -37,21 +37,10 @@
                         android:fontFamily="@font/vazir"
                         android:gravity="center"
                         android:padding="10dp"
-                        android:text="هواشناسی قزوین"
+                        android:text="@string/weatherTitle"
                         android:textColor="@color/black"
                         android:textSize="25sp"
                         android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/lastUpdateTextView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/vazir"
-                        android:gravity="center"
-                        android:padding="2dp"
-                        android:text="15:00 - 1398/1/23"
-                        android:textColor="@color/black"
-                        android:textSize="13sp" />
 
                     <TextView
                         android:id="@+id/temperatureTextView"
@@ -226,7 +215,7 @@
                         android:fontFamily="@font/vazir"
                         android:gravity="center"
                         android:padding="10dp"
-                        android:text="پیش بینی 5 روز آینده هوا"
+                        android:text="@string/forecastTitle"
                         android:textColor="@color/black"
                         android:textSize="18sp"
                         android:textStyle="bold" />
@@ -261,5 +250,41 @@
         android:layout_height="0.5dp"
         android:background="@color/white"
         app:layout_constraintBottom_toBottomOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/waitingLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="0.5dp"
+        android:layout_marginBottom="0.5dp"
+        android:background="@color/blue"
+        android:visibility="visible">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:visibility="visible"
+            android:indeterminateDrawable="@drawable/progress"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/waitTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/vazir"
+            android:gravity="center"
+            android:visibility="visible"
+            android:padding="2dp"
+            android:text="لطفا صبر کنید"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            app:layout_constraintTop_toBottomOf="@id/progressBar" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

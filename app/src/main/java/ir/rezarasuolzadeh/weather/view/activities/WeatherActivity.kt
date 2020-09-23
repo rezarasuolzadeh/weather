@@ -1,6 +1,7 @@
 package ir.rezarasuolzadeh.weather.view.activities
 
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -52,17 +53,23 @@ class WeatherActivity : AppCompatActivity(), Observer<Any?> {
             forecastAdapter.dailyList = response.daily
             forecastAdapter.context = this
             forecastRecyclerView.adapter = forecastAdapter
+            waitingLayout.visibility = View.GONE
         }
         if (response is Enums.DataState) {
             if (response == Enums.DataState.FAILED) {
-                Toast.makeText(this, "ارتباط با خطا مواجه شد", Toast.LENGTH_SHORT).show()
+                // offline
             }
         }
         if (response is Enums.NetworkState) {
             if (response == Enums.NetworkState.NO_INTERNET) {
-                Toast.makeText(this, "عدم اتصال به اینترنت", Toast.LENGTH_SHORT).show()
+                // offline
             }
         }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finish()
     }
 
 }

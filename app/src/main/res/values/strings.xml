@@ -4,4 +4,6 @@
     <string name="city">Qazvin</string>
     <string name="lat">36.269363</string>
     <string name="lon">50.003201</string>
+    <string name="weatherTitle">هواشناسی قزوین</string>
+    <string name="forecastTitle">پیش بینی 7 روز آینده هوا</string>
 </resources>
