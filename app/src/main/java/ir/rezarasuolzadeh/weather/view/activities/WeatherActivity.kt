@@ -18,18 +18,18 @@ class WeatherActivity : AppCompatActivity(), Observer<Any?> {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_weather)
 
-        weatherViewModel.getWeather("Qazvin", "24c2912ee511b638c430d93e9a27acc0").observe(this, this)
+        weatherViewModel.getWeather(
+            resources.getString(R.string.city),
+            resources.getString(R.string.token)
+        ).observe(this, this)
     }
 
     override fun onChanged(response: Any?) {
         if (response is WeatherModel) {
-            Toast.makeText(this, response.main.humidity, Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, response.main.humidity.toString(), Toast.LENGTH_SHORT).show()
         }
-        if(response is Enums.DataState) {
-            if(response == Enums.DataState.LOADING) {
-                // to do
-            }
-            if(response == Enums.DataState.FAILED) {
+        if (response is Enums.DataState) {
+            if (response == Enums.DataState.FAILED) {
                 Toast.makeText(this, "ارتباط با خطا مواجه شد", Toast.LENGTH_SHORT).show()
             }
         }

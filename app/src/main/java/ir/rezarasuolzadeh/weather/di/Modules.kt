@@ -9,6 +9,7 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 
 // network module
 val networkModule = module {
@@ -41,5 +42,8 @@ fun provideHttpInterceptor(): HttpLoggingInterceptor {
 }
 
 fun okHttpClientProvider(interceptor: HttpLoggingInterceptor): OkHttpClient {
-    return OkHttpClient().newBuilder().addInterceptor(interceptor).build()
+    return OkHttpClient().newBuilder()
+        .addInterceptor(interceptor)
+        .retryOnConnectionFailure(true)
+        .build()
 }

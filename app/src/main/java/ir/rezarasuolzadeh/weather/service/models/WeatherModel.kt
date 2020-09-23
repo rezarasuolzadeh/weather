@@ -11,7 +11,7 @@ data class WeatherModel(
     @SerializedName("coord")
     val coord: Coord = Coord(),
     @SerializedName("dt")
-    val dt: Int = 0, // 1600788788
+    val dt: Int = 0, // 1600844108
     @SerializedName("id")
     val id: Int = 0, // 119505
     @SerializedName("main")
@@ -32,7 +32,7 @@ data class WeatherModel(
 
 data class Clouds(
     @SerializedName("all")
-    val all: Int = 0 // 20
+    val all: Int = 0 // 0
 )
 
 data class Coord(
@@ -44,17 +44,17 @@ data class Coord(
 
 data class Main(
     @SerializedName("feels_like")
-    val feelsLike: Double = 0.0, // 293.64
+    val feelsLike: Double = 0.0, // 295.58
     @SerializedName("humidity")
-    val humidity: Int = 0, // 36
+    val humidity: Int = 0, // 53
     @SerializedName("pressure")
-    val pressure: Int = 0, // 1018
+    val pressure: Int = 0, // 1021
     @SerializedName("temp")
-    val temp: Double = 0.0, // 297.15
+    val temp: Double = 0.0, // 296.15
     @SerializedName("temp_max")
-    val tempMax: Double = 0.0, // 297.15
+    val tempMax: Double = 0.0, // 296.15
     @SerializedName("temp_min")
-    val tempMin: Double = 0.0 // 297.15
+    val tempMin: Double = 0.0 // 296.15
 )
 
 data class Sys(
@@ -63,27 +63,27 @@ data class Sys(
     @SerializedName("id")
     val id: Int = 0, // 7465
     @SerializedName("sunrise")
-    val sunrise: Int = 0, // 1600741680
+    val sunrise: Int = 0, // 1600828127
     @SerializedName("sunset")
-    val sunset: Int = 0, // 1600785442
+    val sunset: Int = 0, // 1600871752
     @SerializedName("type")
     val type: Int = 0 // 1
 )
 
 data class Weather(
     @SerializedName("description")
-    val description: String = "", // few clouds
+    val description: String = "", // clear sky
     @SerializedName("icon")
-    val icon: String = "", // 02n
+    val icon: String = "", // 01d
     @SerializedName("id")
-    val id: Int = 0, // 801
+    val id: Int = 0, // 800
     @SerializedName("main")
-    val main: String = "" // Clouds
+    val main: String = "" // Clear
 )
 
 data class Wind(
     @SerializedName("deg")
-    val deg: Int = 0, // 351
+    val deg: Int = 0, // 50
     @SerializedName("speed")
-    val speed: Double = 0.0 // 4.35
+    val speed: Double = 0.0 // 2.1
 )
