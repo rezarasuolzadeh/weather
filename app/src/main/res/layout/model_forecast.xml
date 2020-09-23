@@ -14,6 +14,7 @@
         android:orientation="horizontal">
 
         <ImageView
+            android:id="@+id/conditionImageView"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:padding="3dp"
@@ -21,6 +22,7 @@
             android:src="@drawable/ic_02d" />
 
         <TextView
+            android:id="@+id/dayTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -42,6 +44,7 @@
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/temperatureTextView"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_gravity="center"
@@ -54,6 +57,7 @@
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/conditionTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

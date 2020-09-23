@@ -2,5 +2,6 @@
     <string name="app_name">Weather</string>
     <string name="token">b18c4e572a81d29a6189efa9441723d1</string>
     <string name="city">Qazvin</string>
-    <string name="units">Metric</string>
+    <string name="lat">36.269363</string>
+    <string name="lon">50.003201</string>
 </resources>

@@ -5,6 +5,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import ir.rezarasuolzadeh.weather.R
+import ir.rezarasuolzadeh.weather.service.models.ForecastModel
 import ir.rezarasuolzadeh.weather.service.models.WeatherModel
 import ir.rezarasuolzadeh.weather.service.utils.Enums
 import ir.rezarasuolzadeh.weather.service.utils.WeatherInfo
@@ -26,6 +27,12 @@ class WeatherActivity : AppCompatActivity(), Observer<Any?> {
             resources.getString(R.string.city),
             resources.getString(R.string.token)
         ).observe(this, this)
+
+        weatherViewModel.getForecast(
+            resources.getString(R.string.lat),
+            resources.getString(R.string.lon),
+            resources.getString(R.string.token)
+        ).observe(this, this)
     }
 
     override fun onChanged(response: Any?) {
@@ -38,6 +45,9 @@ class WeatherActivity : AppCompatActivity(), Observer<Any?> {
             windSpeedTextView.text = weatherInfo.generateWindSpeed(response.wind.speed)
             windDegreeTextView.text = weatherInfo.generateWindDegree(response.wind.deg)
             conditionImageView.setImageResource(weatherInfo.generateConditionIcon(response.weather[0].icon))
+        }
+        if (response is ForecastModel) {
+            Toast.makeText(this, "اطلاعات پیش بینی دریافت شد", Toast.LENGTH_SHORT).show()
         }
         if (response is Enums.DataState) {
             if (response == Enums.DataState.FAILED) {
