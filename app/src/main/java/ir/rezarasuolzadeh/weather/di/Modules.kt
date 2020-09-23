@@ -2,6 +2,7 @@ package ir.rezarasuolzadeh.weather.di
 
 import ir.rezarasuolzadeh.weather.interfaces.api.WeatherDao
 import ir.rezarasuolzadeh.weather.service.repositories.WeatherRepository
+import ir.rezarasuolzadeh.weather.service.utils.WeatherInfo
 import ir.rezarasuolzadeh.weather.viewmodel.WeatherViewModel
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -23,6 +24,7 @@ val weatherPageModule = module(override = true) {
     viewModel { WeatherViewModel(get()) }
     single { WeatherRepository(get()) }
     single { weatherDaoProvider(get()) }
+    single { WeatherInfo() }
 }
 
 // weather dao provider
