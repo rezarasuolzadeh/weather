@@ -1,7 +1,6 @@
 package ir.rezarasuolzadeh.weather.view.activities
 
 import android.os.Bundle
-import android.os.Handler
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -15,7 +14,6 @@ import ir.rezarasuolzadeh.weather.view.adapters.OfflineForecastAdapter
 import ir.rezarasuolzadeh.weather.viewmodel.OfflineViewModel
 import ir.rezarasuolzadeh.weather.viewmodel.WeatherViewModel
 import kotlinx.android.synthetic.main.activity_weather.*
-import kotlinx.coroutines.delay
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -88,43 +86,38 @@ class WeatherActivity : AppCompatActivity(), Observer<Any?> {
             response.weather[0].icon
         )
         offlineViewModel.deleteWeather()
-        Handler().postDelayed({
-            offlineViewModel.insertWeather(weather)
-        }, 1000)
+        offlineViewModel.insertWeather(weather)
     }
 
     private fun updateForecastCache(response: List<Daily>) {
         offlineViewModel.deleteForecast()
-        Handler().postDelayed({
-            for (i in response.indices) {
-                offlineViewModel.insertForecast(
-                    OfflineForecastModel(
-                        i,
-                        response[i].temp.day,
-                        response[i].weather[0].description,
-                        response[i].weather[0].icon
-                    )
+        for (i in response.indices) {
+            offlineViewModel.insertForecast(
+                OfflineForecastModel(
+                    i,
+                    response[i].temp.day,
+                    response[i].weather[0].description,
+                    response[i].weather[0].icon
                 )
-            }
-        }, 1000)
+            )
+        }
     }
 
     private fun readWeatherCache() {
         offlineViewModel.getWeather().observe(this, Observer {
             if (it.isEmpty()) {
-                Toast.makeText(this, "به اینترنت متصل شوید", Toast.LENGTH_SHORT).show()
+                failed()
             } else {
-                Toast.makeText(this, "W" + it.size.toString(), Toast.LENGTH_SHORT).show()
-//                temperatureTextView.text = weatherInfo.generateTemperature(it[0].temperature)
-//                conditionTextView.text = weatherInfo.generateCondition(it[0].condition)
-//                pressureTextView.text = weatherInfo.generatePressure(it[0].pressure)
-//                humidityTextView.text = weatherInfo.generateHumidity(it[0].humidity)
-//                visibilityTextView.text = weatherInfo.generateVisibility(it[0].visibility)
-//                windSpeedTextView.text = weatherInfo.generateWindSpeed(it[0].windSpeed)
-//                windDegreeTextView.text = weatherInfo.generateWindDegree(it[0].windDegree)
-//                conditionImageView.setImageResource(weatherInfo.generateConditionIcon(it[0].icon))
-//                offlineTextView.visibility = View.VISIBLE
-//                waitingLayout.visibility = View.GONE
+                temperatureTextView.text = weatherInfo.generateTemperature(it[0].temperature)
+                conditionTextView.text = weatherInfo.generateCondition(it[0].condition)
+                pressureTextView.text = weatherInfo.generatePressure(it[0].pressure)
+                humidityTextView.text = weatherInfo.generateHumidity(it[0].humidity)
+                visibilityTextView.text = weatherInfo.generateVisibility(it[0].visibility)
+                windSpeedTextView.text = weatherInfo.generateWindSpeed(it[0].windSpeed)
+                windDegreeTextView.text = weatherInfo.generateWindDegree(it[0].windDegree)
+                conditionImageView.setImageResource(weatherInfo.generateConditionIcon(it[0].icon))
+                offlineTextView.visibility = View.VISIBLE
+                waitingLayout.visibility = View.GONE
             }
         })
     }
@@ -132,16 +125,21 @@ class WeatherActivity : AppCompatActivity(), Observer<Any?> {
     private fun readForecastCache() {
         offlineViewModel.getForecast().observe(this, Observer {
             if (it.isEmpty()) {
-                Toast.makeText(this, "به اینترنت متصل شوید", Toast.LENGTH_SHORT).show()
+                failed()
             } else {
-                Toast.makeText(this, "F" + it.size.toString(), Toast.LENGTH_SHORT).show()
-//                offlineForecastAdapter.dailyList = it
-//                offlineForecastAdapter.context = this
-//                forecastRecyclerView.adapter = offlineForecastAdapter
-//                offlineForecastAdapter.notifyDataSetChanged()
-//                waitingLayout.visibility = View.GONE
+                offlineForecastAdapter.dailyList = it
+                offlineForecastAdapter.context = this
+                forecastRecyclerView.adapter = offlineForecastAdapter
+                offlineForecastAdapter.notifyDataSetChanged()
+                waitingLayout.visibility = View.GONE
             }
         })
+    }
+
+    private fun failed() {
+        progressBar.visibility = View.GONE
+        waitTextView.visibility = View.GONE
+        failedTextView.visibility = View.VISIBLE
     }
 
     override fun onBackPressed() {
