@@ -6,7 +6,6 @@ import androidx.lifecycle.liveData
 import ir.rezarasuolzadeh.weather.service.models.OfflineForecastModel
 import ir.rezarasuolzadeh.weather.service.models.OfflineWeatherModel
 import ir.rezarasuolzadeh.weather.service.repositories.OfflineRepository
-import ir.rezarasuolzadeh.weather.service.utils.Enums
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
@@ -31,7 +30,7 @@ class OfflineViewModel(private val offlineRepository: OfflineRepository) : ViewM
         runBlocking {
             delay(2000)
             val response = offlineRepository.getWeather()
-            delay(1000)
+            delay(2000)
             emit(response)
         }
     }
