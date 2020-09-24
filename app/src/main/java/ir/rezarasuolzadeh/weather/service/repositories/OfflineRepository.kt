@@ -13,7 +13,7 @@ class OfflineRepository(private val offlineWeatherDao: OfflineWeatherDao) {
         offlineWeatherDao.deleteWeather()
     }
 
-    suspend fun getWeather() : OfflineWeatherModel{
+    suspend fun getWeather() : List<OfflineWeatherModel>{
         return offlineWeatherDao.getWeather()
     }
 

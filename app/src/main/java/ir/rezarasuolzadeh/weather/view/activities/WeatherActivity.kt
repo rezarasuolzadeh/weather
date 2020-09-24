@@ -86,15 +86,17 @@ class WeatherActivity : AppCompatActivity(), Observer<Any?> {
 
     private fun readCache() {
         offlineViewModel.getWeather().observe(this, Observer {
-            if(it is OfflineWeatherModel) {
-                temperatureTextView.text = weatherInfo.generateTemperature(it.temperature)
-                conditionTextView.text = weatherInfo.generateCondition(it.condition)
-                pressureTextView.text = weatherInfo.generatePressure(it.pressure)
-                humidityTextView.text = weatherInfo.generateHumidity(it.humidity)
-                visibilityTextView.text = weatherInfo.generateVisibility(it.visibility)
-                windSpeedTextView.text = weatherInfo.generateWindSpeed(it.windSpeed)
-                windDegreeTextView.text = weatherInfo.generateWindDegree(it.windDegree)
-                conditionImageView.setImageResource(weatherInfo.generateConditionIcon(it.icon))
+            if(it == null) {
+                Toast.makeText(this, "به اینترنت متصل شوید", Toast.LENGTH_SHORT).show()
+            } else {
+                temperatureTextView.text = weatherInfo.generateTemperature(it[0].temperature)
+                conditionTextView.text = weatherInfo.generateCondition(it[0].condition)
+                pressureTextView.text = weatherInfo.generatePressure(it[0].pressure)
+                humidityTextView.text = weatherInfo.generateHumidity(it[0].humidity)
+                visibilityTextView.text = weatherInfo.generateVisibility(it[0].visibility)
+                windSpeedTextView.text = weatherInfo.generateWindSpeed(it[0].windSpeed)
+                windDegreeTextView.text = weatherInfo.generateWindDegree(it[0].windDegree)
+                conditionImageView.setImageResource(weatherInfo.generateConditionIcon(it[0].icon))
                 offlineTextView.visibility = View.VISIBLE
                 waitingLayout.visibility = View.GONE
             }
