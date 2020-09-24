@@ -10,8 +10,8 @@ class OfflineRepository(
     private val offlineForecastDao: OfflineForecastDao
 ) {
 
-    suspend fun insertWeather(weather: OfflineWeatherModel) {
-        offlineWeatherDao.insertWeather(weather)
+    suspend fun insertWeather(weather: OfflineWeatherModel) : Long {
+        return offlineWeatherDao.insertWeather(weather)
     }
 
     suspend fun deleteWeather() {
@@ -22,8 +22,8 @@ class OfflineRepository(
         return offlineWeatherDao.getWeather()
     }
 
-    suspend fun insertForecast(forecast: OfflineForecastModel) {
-        offlineForecastDao.insertForecast(forecast)
+    suspend fun insertForecast(forecast: OfflineForecastModel) : Long {
+        return offlineForecastDao.insertForecast(forecast)
     }
 
     suspend fun deleteForecast() {

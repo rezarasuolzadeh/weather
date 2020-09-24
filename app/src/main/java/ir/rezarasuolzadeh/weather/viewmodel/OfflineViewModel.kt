@@ -12,7 +12,7 @@ import kotlinx.coroutines.runBlocking
 
 class OfflineViewModel(private val offlineRepository: OfflineRepository) : ViewModel() {
 
-    fun insertWeather(weather: OfflineWeatherModel) = liveData(Dispatchers.IO) {
+    fun insertWeather(weather: OfflineWeatherModel) : LiveData<Long> = liveData(Dispatchers.IO) {
         runBlocking {
             val response = offlineRepository.insertWeather(weather)
             emit(response)
@@ -35,7 +35,7 @@ class OfflineViewModel(private val offlineRepository: OfflineRepository) : ViewM
         }
     }
 
-    fun insertForecast(forecast: OfflineForecastModel) = liveData(Dispatchers.IO) {
+    fun insertForecast(forecast: OfflineForecastModel) : LiveData<Long> = liveData(Dispatchers.IO) {
         runBlocking {
             val response = offlineRepository.insertForecast(forecast)
             emit(response)

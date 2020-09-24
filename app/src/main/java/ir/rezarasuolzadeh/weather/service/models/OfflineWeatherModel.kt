@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "weather_table")
 data class OfflineWeatherModel(
-    @ColumnInfo(name = "weather_id") @PrimaryKey val id: Int,
+    @ColumnInfo(name = "weather_id") @PrimaryKey(autoGenerate = true) val id: Int,
     @ColumnInfo(name = "weather_temperature") val temperature: Double,
     @ColumnInfo(name = "weather_condition") val condition: String,
     @ColumnInfo(name = "weather_wind_speed") val windSpeed: Double,

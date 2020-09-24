@@ -86,7 +86,11 @@ class WeatherActivity : AppCompatActivity(), Observer<Any?> {
             response.weather[0].icon
         )
         offlineViewModel.deleteWeather()
-        offlineViewModel.insertWeather(weather)
+        offlineViewModel.insertWeather(weather).observe(this, Observer {
+            if (it is Long) {
+                // nothing to do
+            }
+        })
     }
 
     private fun updateForecastCache(response: List<Daily>) {
@@ -99,7 +103,11 @@ class WeatherActivity : AppCompatActivity(), Observer<Any?> {
                     response[i].weather[0].description,
                     response[i].weather[0].icon
                 )
-            )
+            ).observe(this, Observer {
+                if (it is Long) {
+                    // nothing to do
+                }
+            })
         }
     }
 
@@ -130,7 +138,6 @@ class WeatherActivity : AppCompatActivity(), Observer<Any?> {
                 offlineForecastAdapter.dailyList = it
                 offlineForecastAdapter.context = this
                 forecastRecyclerView.adapter = offlineForecastAdapter
-                offlineForecastAdapter.notifyDataSetChanged()
                 waitingLayout.visibility = View.GONE
             }
         })
